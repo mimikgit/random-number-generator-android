@@ -1,0 +1,2 @@
+rootProject.name = "mimik Random Number Generator"
+include ':app'

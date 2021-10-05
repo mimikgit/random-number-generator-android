@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">mimik Random Number Generator</string>
+    <string name="start">Start edge</string>
+    <string name="authorize">Authorize</string>
+    <string name="get_random_number">Get Random Number</string>
+    <string name="clear">Clear edge</string>
+</resources>
