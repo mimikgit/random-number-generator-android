@@ -2,6 +2,7 @@ package com.mimik.randomnumbergen;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     EdgeMobileClient edgeMobileClient;
     String accessToken;
     String randomNumberRoot;
+    Button getButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         // Start edge using a new thread so as not to slow down activity creation
         Executors.newSingleThreadExecutor().execute(this::startEdge);
 
-        findViewById(R.id.btn_get).setOnClickListener(this::onGetClicked);
+        getButton = findViewById(R.id.btn_get);
+        getButton.setOnClickListener(this::onGetClicked);
     }
 
     private void startEdge() {
@@ -177,11 +180,19 @@ public class MainActivity extends AppCompatActivity {
                             MainActivity.this,
                             "Successfully deployed microservice!",
                             Toast.LENGTH_LONG).show();
+                    getButton.setEnabled(true);
            });
         }
     }
 
     private void onGetClicked(View view) {
+        if (randomNumberRoot == null || edgeMobileClient.getEdgePort() == -1) {
+            Toast.makeText(
+                    MainActivity.this,
+                    "Edge is not ready yet!",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
         // Construct an API request for the edge microservice
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
