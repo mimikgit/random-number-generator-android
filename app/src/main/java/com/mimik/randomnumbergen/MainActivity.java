@@ -53,18 +53,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startEdge() {
-        if (edgeMobileClient.startEdge()) { // Start edgeEngine runtime
+        if (edgeMobileClient.startEdgeSynchronously()) { // Start edgeEngine runtime
             runOnUiThread(() -> {
                 Toast.makeText(
                         MainActivity.this,
                         "edgeEngine started!",
                         Toast.LENGTH_LONG).show();
             });
-            try {
-                Thread.sleep(1000); // Wait for edge to finish startup
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             authorizeEdge();
         } else {
             runOnUiThread(() -> {
