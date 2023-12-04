@@ -15,7 +15,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders = ['appAuthRedirectScheme': '']
         buildConfigField "String", "AUTHORIZATION_ENDPOINT", '"https://devconsole-mid.mimik.com"'
         buildConfigField "String", "CLIENT_ID", '"<YOUR_CLIENT_ID>"'
         buildConfigField "String", "DEVELOPER_ID_TOKEN", '"<YOUR_DEVELOPER_ID_TOKEN>"'
@@ -45,6 +44,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation 'com.mimik.edgesdk-android-client:edgemobileclient-core-trial:0.3.8.4'
+    implementation 'com.mimik.edgesdk-android-client:edgemobileclient-core-trial:0.3.8.5'
     implementation "com.squareup.okhttp3:okhttp:4.9.3"
 }
