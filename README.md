@@ -17,7 +17,7 @@ This project is structured as a scenario that shows you how to fix a bug in the 
 
 ![buggy code](images/rangen-buggy-behavior.jpg)
 
-This project is divided into two branches. The `main` banch has the buggy code. The branch, `completed_code` has the code that fixes the bug.
+This project is divided into three branches. The `main` branch has the buggy code. The branch, `completed_code` has the code that fixes the bug. The `superdrive_enabled` branch showcases the ability to communicate with other devices deploying the same microservices.
 
 ![buggy code](images/rangen-after-photos-01.jpg)
 
