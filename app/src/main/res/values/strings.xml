@@ -4,4 +4,5 @@
     <string name="authorize">Authorize</string>
     <string name="get_random_number">Get Random Number</string>
     <string name="clear">Clear edge</string>
+    <string name="get_random_number_with_superdrive">Get Random Number With Superdrive</string>
 </resources>

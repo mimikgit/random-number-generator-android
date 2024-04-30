@@ -17,7 +17,7 @@ This project is structured as a scenario that shows you how to fix a bug in the 
 
 ![buggy code](images/rangen-buggy-behavior.jpg)
 
-This project is divided into two branches. The `main` banch has the buggy code. The branch, `completed_code` has the code that fixes the bug.
+This project is divided into three branches. The `main` branch has the buggy code. The branch, `completed_code` has the code that fixes the bug. The `superdrive_enabled` branch showcases the ability to communicate with other devices deploying the same microservices.
 
 ![buggy code](images/rangen-after-photos-01.jpg)
 
@@ -28,6 +28,10 @@ Then, if you want to see the bug free code in the branch `completed_code` in Git
 If you want see the fixed code locally, checkout the branch `completed_code` using the following command:
 
 `git checkout completed_code`
+
+For a version that can query other devices running the same application for numbers, checkout the branch `superdrive_enabled` using the following command
+
+`git checkout superdrive_enabled`
 
 # Getting the code up and running
 

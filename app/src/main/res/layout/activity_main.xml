@@ -15,4 +15,12 @@
         android:text="@string/get_random_number"
         android:enabled="false"/>
 
+    <Button
+        android:id="@+id/btn_superdrive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/get_random_number_with_superdrive"
+        android:enabled="false"/>
+
 </LinearLayout>
