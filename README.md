@@ -29,7 +29,7 @@ If you want see the fixed code locally, checkout the branch `completed_code` usi
 
 `git checkout completed_code`
 
-For a version that can query other devices actively running the same application for numbers, checkout the branch `superdrive_enabled` using the following command:
+For a version that uses the [mimik mSuperdrive microservice](https://github.com/edgeMicroservice/mSuperdrive) to query other devices actively running the same application for numbers, checkout the branch `superdrive_enabled` using the following command:
 
 `git checkout superdrive_enabled`
 
