@@ -29,9 +29,11 @@ If you want see the fixed code locally, checkout the branch `completed_code` usi
 
 `git checkout completed_code`
 
-For a version that can query other devices running the same application for numbers, checkout the branch `superdrive_enabled` using the following command
+For a version that can query other devices actively running the same application for numbers, checkout the branch `superdrive_enabled` using the following command:
 
 `git checkout superdrive_enabled`
+
+When running the `superdrive_enabled` version, ensure that any devices on the network actively running mimik Random Number Generator are running the `superdrive_enabled` version.  
 
 # Getting the code up and running
 
