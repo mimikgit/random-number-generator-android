@@ -16,8 +16,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "AUTHORIZATION_ENDPOINT", '"https://devconsole-mid.mimik.com"'
-        buildConfigField "String", "CLIENT_ID", '"a8f542f9-9cdc-4253-b4a6-6ae242570c94"'
-        buildConfigField "String", "DEVELOPER_ID_TOKEN", '"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik80d0NjU0FFMkxkX1VTR3ZSNjdmU18yQlNuZGhuYjFxb2YyY2trUlAyVE0ifQ.eyJzdWIiOiIyOTU5NTU0MTExNDUzNjYzMjMzIiwiZW1haWwiOiIyOTU5NTU0MTExNDUzNjYzMjMzQGV4YW1wbGUuY29tIiwiYXVkIjoiYThmNTQyZjktOWNkYy00MjUzLWI0YTYtNmFlMjQyNTcwYzk0IiwiZXhwIjoxNzM2MTA2NTUzLCJpYXQiOjE3MzM1MTQ1NTMsImlzcyI6Imh0dHBzOi8vZGV2Y29uc29sZS1taWQubWltaWsuY29tIn0.OfImQEcoFepA6kF-t0KmxRNLE6bmw_MMgZc-STrHwPbTrN-aKu_3Mg5zhYQS3lZ7HOkZSPqusPoavHOY8hsG13EgdtPd3VobeNjXgEBYx5r_8COyGK3chCLeG6MZ-EFJrlXEGkku2YxKL4Ko4a8Eky8ojbWPOvOBkJVi-DqjLfPN47mdFejE7CYpXFs0TVk9KORuJ7XLhiPD1SfmC8aYs6tnMB0gIfB4yjGdiMB1s6Mafx7AZG2HhwomC_Gh7Q3C77Q-CSXJwYDFp8bVIEPDQmkiS7gy9WKhtwtroGYIb3AJ7C3Zv6NAncotvpHXHBPtmavEQPXG42ynZmvJqAzFqA"'
+        buildConfigField "String", "CLIENT_ID", '"<YOUR_CLIENT_ID>"'
+        buildConfigField "String", "DEVELOPER_ID_TOKEN", '"<YOUR_DEVELOPER_ID_TOKEN>"'
     }
 
     buildTypes {
