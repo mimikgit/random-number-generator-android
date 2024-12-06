@@ -7,15 +7,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mimik.edgemobileclient.EdgeMobileClient;
-import com.mimik.edgemobileclient.EdgeRequestError;
-import com.mimik.edgemobileclient.EdgeRequestResponse;
-import com.mimik.edgemobileclient.EdgeResponseHandler;
-import com.mimik.edgemobileclient.authobject.CombinedAuthResponse;
-import com.mimik.edgemobileclient.authobject.DeveloperTokenLoginConfig;
-import com.mimik.edgemobileclient.edgeservice.EdgeConfig;
-import com.mimik.edgemobileclient.microserviceobjects.MicroserviceDeploymentConfig;
-import com.mimik.edgemobileclient.microserviceobjects.MicroserviceDeploymentStatus;
+import com.mimik.mimoeclient.MimOEClient;
+import com.mimik.mimoeclient.MimOERequestError;
+import com.mimik.mimoeclient.MimOERequestResponse;
+import com.mimik.mimoeclient.MimOEResponseHandler;
+import com.mimik.mimoeclient.authobject.CombinedAuthResponse;
+import com.mimik.mimoeclient.authobject.DeveloperTokenLoginConfig;
+import com.mimik.mimoeclient.microserviceobjects.MicroserviceDeploymentConfig;
+import com.mimik.mimoeclient.microserviceobjects.MicroserviceDeploymentStatus;
+import com.mimik.mimoeclient.mimoeservice.MimOEConfig;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -28,11 +28,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.util.concurrent.Executors;
 
-
-import java.util.Random;
-
 public class MainActivity extends AppCompatActivity {
-    EdgeMobileClient edgeMobileClient;
+    MimOEClient mimOEClient;
     String accessToken;
     String randomNumberRoot;
     Button getButton;
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Instantiate new instance of edgeEngine runtime
-        edgeMobileClient = new EdgeMobileClient(this, new EdgeConfig());
+        mimOEClient = new MimOEClient(this, new MimOEConfig());
 
         // Start edge using a new thread so as not to slow down activity creation
         Executors.newSingleThreadExecutor().execute(this::startEdge);
@@ -53,25 +50,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startEdge() {
-        if (edgeMobileClient.startEdgeSynchronously()) { // Start edgeEngine runtime
+        if (mimOEClient.startMimOESynchronously()) { // Start edgeEngine runtime
             runOnUiThread(() -> {
                 Toast.makeText(
                         MainActivity.this,
-                        "edgeEngine started!",
+                        "mim OE started!",
                         Toast.LENGTH_LONG).show();
             });
-            authorizeEdge();
+            authorizeMimOE();
         } else {
             runOnUiThread(() -> {
                 Toast.makeText(
                         MainActivity.this,
-                        "edgeEngine failed to start!",
+                        "mim OE failed to start!",
                         Toast.LENGTH_LONG).show();
             });
         }
     }
 
-    private void authorizeEdge() {
+    private void authorizeMimOE() {
         // Get the DEVELOPER_ID_TOKEN from the BuildConfig settings
         String developerIdToken = BuildConfig.DEVELOPER_ID_TOKEN;
 
@@ -90,17 +87,17 @@ public class MainActivity extends AppCompatActivity {
         config.setClientId(clientId);
 
         // Login to the edgeCloud
-        edgeMobileClient.loginWithDeveloperToken(
+        mimOEClient.loginWithDeveloperToken(
                 this,
                 config,
-                new EdgeResponseHandler() {
+                new MimOEResponseHandler() {
                     @Override
-                    public void onError(EdgeRequestError edgeRequestError) {
+                    public void onError(MimOERequestError mimOERequestError) {
                         // Display error message
                         runOnUiThread(() -> {
                             Toast.makeText(
                                     MainActivity.this,
-                                    "Error getting access token! " + edgeRequestError.getErrorMessage(),
+                                    "Error getting access token! " + mimOERequestError.getErrorMessage(),
                                     Toast.LENGTH_LONG).show();
                         });
                     }
@@ -108,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
                     // A valid return makes the Access Token available by way of
                     // the method, edgeMobileClient.getCombinedAccessTokens()
                     @Override
-                    public void onResponse(EdgeRequestResponse edgeRequestResponse) {
+                    public void onResponse(MimOERequestResponse mimOERequestResponse) {
 
                         // Get all the token that are stored within the
                         // edgeMobileClient
-                        CombinedAuthResponse tokens = edgeMobileClient.getCombinedAccessTokens();
+                        CombinedAuthResponse tokens = mimOEClient.getCombinedAccessTokens();
 
                         // Extract the Access Token from the tokens object and assign
                         // it to the class variable, accessToken
@@ -156,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Deploy edge microservice using the client library instance variable
         MicroserviceDeploymentStatus status =
-                edgeMobileClient.deployEdgeMicroservice(accessToken, config);
+                mimOEClient.deployMimOEMicroservice(accessToken, config);
         if (status.error != null) {
             // Display microservice deployment error
             runOnUiThread(() -> {
@@ -181,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onGetClicked(View view) {
-        if (randomNumberRoot == null || edgeMobileClient.getEdgePort() == -1) {
+        if (randomNumberRoot == null || mimOEClient.getMimOEPort() == -1) {
             Toast.makeText(
                     MainActivity.this,
                     "Edge is not ready yet!",
@@ -194,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 .url(String.format(
                         "http://127.0.0.1:%d%s/randomNumber",
                         // use the client to get the default localhost port
-                        edgeMobileClient.getEdgePort(),
+                        mimOEClient.getMimOEPort(),
                         randomNumberRoot)) // root URI determined by microservice deployment
                 .build();
         client.newCall(request).enqueue(new Callback() {
