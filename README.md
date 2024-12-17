@@ -1,19 +1,19 @@
 # Random Number Generator for Android Devices
-The purpose of this project is to demonstrate how to program an Android application that generates a random number using a edge microservice that runs under the edgeEngine Runtime.
+The purpose of this project is to demonstrate how to program an Android application that generates a random number using a mim OE microservice that runs under the mim OE Runtime.
 
-|What are the edgeEngine Runtime and edge microservices|
+|What are the mim OE Runtime and mim OE microservices|
 |----|
-|The edgeEngine Runtime and edge microservices are technologies developed by mimik. mimik technology enables any computing device to act as a server, enabling all computing devices to communicate directly at the application layer according to the principles of edge computing.|
+|The mim OE Runtime and mim OE microservices are technologies developed by mimik. mimik technology enables any computing device to act as a server, enabling all computing devices to communicate directly at the application layer according to the principles of edge computing.|
 
 To clone the code to your local machine, execute the following command:
 
 `git clone https://github.com/mimikgit/random-number-generator-android.git`
 
-# Using the project with the edge microservice tutorial
+# Using the project with the mim OE microservice tutorial
 
-This project is intended to be the demonstration code that accompanies the online tutorial *Creating a Simple Android Application that Uses an edge microservice*. You can find the tutorial [here](http://TO_BE_PROVIDED.com).
+This project is intended to be the demonstration code that accompanies the online tutorial *Creating a Simple Android Application that Uses a mim OE microservice*. You can find the tutorial [here](https://devdocs.mimik.com/tutorials/01-submenu/03-submenu/01-index).
 
-This project is structured as a scenario that shows you how to fix a bug in the code by using an edge microservice to solve the problem. The bug is that the code is supposed to generate a random number each time a button on the screen of the Android device is pressed. But, it doesn't. The same number keeps appearing. However, this project does have code that provides a fix.
+This project is structured as a scenario that shows you how to fix a bug in the code by using a mim OE microservice to solve the problem. The bug is that the code is supposed to generate a random number each time a button on the screen of the Android device is pressed. But, it doesn't. The same number keeps appearing. However, this project does have code that provides a fix.
 
 ![buggy code](images/rangen-buggy-behavior.jpg)
 
@@ -43,5 +43,5 @@ You can create and register a project in the mimik Developer Console website [he
 
 You'll configure the application using the various tokens generated from within a mimik Developer Console.
 
-As mentioned above, to get the most benefit from this project, it's best to follow along with the instructions provided in the tutorial [here](http://TO_BE_PROVIDED.com).
+As mentioned above, to get the most benefit from this project, it's best to follow along with the instructions provided in the tutorial [here](https://devdocs.mimik.com/tutorials/01-submenu/03-submenu/01-index).
 
