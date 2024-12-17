@@ -39,18 +39,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Instantiate new instance of edgeEngine runtime
-        mimOEClient = new MimOEClient(this, new MimOEConfig());
+        // Instantiate new instance of mim OE runtime
+        mimOEClient = new MimOEClient(this, new MimOEConfig().license(BuildConfig.MIM_OE_LICENSE));
 
-        // Start edge using a new thread so as not to slow down activity creation
-        Executors.newSingleThreadExecutor().execute(this::startEdge);
+        // Start mim OE using a new thread so as not to slow down activity creation
+        Executors.newSingleThreadExecutor().execute(this::startMimOE);
 
         getButton = findViewById(R.id.btn_get);
         getButton.setOnClickListener(this::onGetClicked);
     }
 
-    private void startEdge() {
-        if (mimOEClient.startMimOESynchronously()) { // Start edgeEngine runtime
+    private void startMimOE() {
+        if (mimOEClient.startMimOESynchronously()) { // Start mim OE runtime
             runOnUiThread(() -> {
                 Toast.makeText(
                         MainActivity.this,
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         // Set the value for the CLIENT_ID
         config.setClientId(clientId);
 
-        // Login to the edgeCloud
+        // Login to the mimik Cloud
         mimOEClient.loginWithDeveloperToken(
                 this,
                 config,
@@ -103,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     // A valid return makes the Access Token available by way of
-                    // the method, edgeMobileClient.getCombinedAccessTokens()
+                    // the method, mimOEClient.getCombinedAccessTokens()
                     @Override
                     public void onResponse(MimOERequestResponse mimOERequestResponse) {
 
                         // Get all the token that are stored within the
-                        // edgeMobileClient
+                        // mimOEClient
                         CombinedAuthResponse tokens = mimOEClient.getCombinedAccessTokens();
 
                         // Extract the Access Token from the tokens object and assign
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                         });
 
-                        // Deploy edge microservice now that an access token
+                        // Deploy mim OE microservice now that an access token
                         // has been generated
                         deployRandomNumberMicroservice();
                     }
@@ -138,11 +138,11 @@ public class MainActivity extends AppCompatActivity {
         // set the name that will represent the microservice
         config.setName("randomnumber-v1");
 
-        // Get the tar file that represents the edge microservice
-        //but stored in the project's file system as a Gradle resource
+        // Get the tar file that represents the mim OE microservice
+        // but stored in the project's file system as a raw resource
         config.setResourceStream(getResources().openRawResource(R.raw.randomnumber_v1));
 
-        // Set the filename that by which the edge client will identify
+        // Set the filename that by which the mim OE client will identify
         // the microservice internally. This filename is associated internally
         // with the resource stream initialized above
         config.setFilename("randomnumber_v1.tar");
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         // the microservice
         config.setApiRootUri(Uri.parse("/randomnumber/v1"));
 
-        // Deploy edge microservice using the client library instance variable
+        // Deploy mim OE microservice using the client library instance variable
         MicroserviceDeploymentStatus status =
                 mimOEClient.deployMimOEMicroservice(accessToken, config);
         if (status.error != null) {
@@ -181,11 +181,11 @@ public class MainActivity extends AppCompatActivity {
         if (randomNumberRoot == null || mimOEClient.getMimOEPort() == -1) {
             Toast.makeText(
                     MainActivity.this,
-                    "Edge is not ready yet!",
+                    "mim OE is not ready yet!",
                     Toast.LENGTH_LONG).show();
             return;
         }
-        // Construct an API request for the edge microservice
+        // Construct an API request for the mim OE microservice
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url(String.format(
